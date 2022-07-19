@@ -16,6 +16,7 @@ export default function Home() {
             <Card
               code_station={d.code_station}
               libelle_station={d.libelle_station}
+              selected={d.selected}
             />
           );
         })}

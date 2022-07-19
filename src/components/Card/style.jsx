@@ -9,5 +9,11 @@ export default styled.section`
   display: flex;
   button {
     width: 10vw;
+    &.active {
+      background-color: blue;
+    }
+    &.toto {
+      background-color: #d59e1d;
+    }
   }
 `;

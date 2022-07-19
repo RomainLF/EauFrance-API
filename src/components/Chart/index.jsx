@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import ctxProvider from '../../services/Ctx';
 
 export default function Charte() {
-  const { result } = useContext(ctxProvider);
+  const { result, secondResult } = useContext(ctxProvider);
 
   const data = {
     labels: result.map((data) => data),
@@ -14,6 +14,11 @@ export default function Charte() {
         label: 'Température',
         data: result,
         backgroundColor: '#2086b6',
+      },
+      {
+        label: 'Température 2',
+        data: secondResult,
+        backgroundColor: '#d59e1d',
       },
     ],
   };
