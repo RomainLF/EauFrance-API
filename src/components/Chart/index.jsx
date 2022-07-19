@@ -1,5 +1,5 @@
 import SChart from './style';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { useContext } from 'react';
 import ctxProvider from '../../services/Ctx';
@@ -21,7 +21,7 @@ export default function Charte() {
   return (
     <SChart>
       <div className='mainGraph'>
-        <Bar data={data} />
+        <Line data={data} />
       </div>
     </SChart>
   );

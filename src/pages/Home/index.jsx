@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import ctxProvider from '../../services/Ctx';
 import Card from '../../components/Card';
 import Chart from '../../components/Chart';
+import ChartNavBar from '../../components/ChartNavBar';
 
 export default function Home() {
   const { station } = useContext(ctxProvider);
@@ -21,6 +22,7 @@ export default function Home() {
       </section>
       <section className='chart'>
         <Chart />
+        <ChartNavBar />
       </section>
     </SHome>
   );

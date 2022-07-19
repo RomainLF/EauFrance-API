@@ -8,6 +8,7 @@ export function CtxProvider({ children }) {
   const [station, setStation] = useState([]);
   const [choice, setChoice] = useState('vide');
   const [result, setResult] = useState([]);
+  const [periode, setPeriode] = useState(10);
 
   useEffect(() => {
     axios
@@ -33,7 +34,7 @@ export function CtxProvider({ children }) {
   useEffect(() => {
     axios
       .get(
-        `https://hubeau.eaufrance.fr/api/v1/temperature/chronique?code_station=${choice}&size=10&sort=desc&pretty`,
+        `https://hubeau.eaufrance.fr/api/v1/temperature/chronique?code_station=${choice}&size=${periode}&sort=desc&pretty`,
         {}
       )
       .then(function (res) {
@@ -44,7 +45,7 @@ export function CtxProvider({ children }) {
         setResult(temp);
         console.log(temp);
       });
-  }, [choice]);
+  }, [choice, periode]);
 
   return (
     <ctxProvider.Provider
@@ -55,6 +56,8 @@ export function CtxProvider({ children }) {
         setChoice,
         result,
         setResult,
+        periode,
+        setPeriode,
       }}
     >
       {children}
