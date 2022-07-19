@@ -1,15 +1,30 @@
 import SHome from './style';
 import { useContext } from 'react';
 import ctxProvider from '../../services/Ctx';
+import Card from '../../components/Card';
+import Chart from '../../components/Chart';
+import ChartNavBar from '../../components/ChartNavBar';
 
 export default function Home() {
-  const { stations } = useContext(ctxProvider);
+  const { station } = useContext(ctxProvider);
 
   return (
     <SHome>
-      {stations.map((station) => {
-        return <div>{station}</div>;
-      })}
+      <section className='list'>
+        {station.map((d) => {
+          return (
+            <Card
+              code_station={d.code_station}
+              libelle_station={d.libelle_station}
+              selected={d.selected}
+            />
+          );
+        })}
+      </section>
+      <section className='chart'>
+        <Chart />
+        <ChartNavBar />
+      </section>
     </SHome>
   );
 }

@@ -5,8 +5,13 @@ const ctxProvider = createContext();
 export default ctxProvider;
 
 export function CtxProvider({ children }) {
-  const [stations, setStations] = useState([]);
-  const [codeStations, setCodeStations] = useState([]);
+  const [station, setStation] = useState([]);
+  const [choice, setChoice] = useState();
+  const [secondChoice, setSecondChoice] = useState();
+  const [result, setResult] = useState([]);
+  const [secondResult, setSecondResult] = useState([]);
+  const [periode, setPeriode] = useState(10);
+  const [clicked, setClicked] = useState(0);
 
   useEffect(() => {
     axios
@@ -14,27 +19,68 @@ export function CtxProvider({ children }) {
         'https://hubeau.eaufrance.fr/api/v1/temperature/station?size=10&exact_count=true&format=json',
         {}
       )
-      .then(function (response) {
-        console.log('First call');
-        const listName = [];
-        const listCode = [];
-        response.data.data.forEach((el) => {
-          listName.push(el.libelle_station);
-          listCode.push(el.code_station);
+      .then(function (res) {
+        const list = [];
+        res.data.data.forEach((el) => {
+          list.push(
+            new Object({
+              code_station: el.code_station,
+              libelle_station: el.libelle_station,
+              selected: '',
+            })
+          );
         });
-        setStations(listName);
-        setCodeStations(listCode);
-        console.log(listName, listCode);
+        setStation(list);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://hubeau.eaufrance.fr/api/v1/temperature/chronique?code_station=${choice}&size=${periode}&sort=desc&pretty`,
+        {}
+      )
+      .then(function (res) {
+        const temp = [];
+        res.data.data.forEach((el) => {
+          temp.push(el.resultat);
+        });
+        setResult(temp);
+      });
+  }, [choice, periode]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://hubeau.eaufrance.fr/api/v1/temperature/chronique?code_station=${secondChoice}&size=${periode}&sort=desc&pretty`,
+        {}
+      )
+      .then(function (res) {
+        const temp = [];
+        res.data.data.forEach((el) => {
+          temp.push(el.resultat);
+        });
+        setSecondResult(temp);
+      });
+  }, [secondChoice, periode]);
 
   return (
     <ctxProvider.Provider
       value={{
-        setStations,
-        stations,
-        setCodeStations,
-        codeStations,
+        station,
+        setStation,
+        choice,
+        setChoice,
+        result,
+        setResult,
+        periode,
+        setPeriode,
+        secondResult,
+        setSecondResult,
+        secondChoice,
+        setSecondChoice,
+        clicked,
+        setClicked,
       }}
     >
       {children}
