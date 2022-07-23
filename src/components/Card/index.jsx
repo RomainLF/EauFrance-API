@@ -14,7 +14,7 @@ export default function Card(props) {
     setSecondChoice,
   } = useContext(ctxProvider);
 
-  const changeActive = () => {
+  /*const changeActive = () => {
     setStation(
       station.map((d) => {
         if (
@@ -37,9 +37,9 @@ export default function Card(props) {
         return d;
       })
     );
-  };
+  };*/
 
-  const handleChange = (e) => {
+  /*const handleChange = (e) => {
     if (props.selected === 'active') {
       setClicked((clicked) => clicked - 1);
     }
@@ -50,6 +50,54 @@ export default function Card(props) {
       setChoice(e.target.value), setClicked((clicked) => clicked + 1);
     } else
       setSecondChoice(e.target.value), setClicked((clicked) => clicked - 1);
+  };*/
+
+  const changeActive = (e) => {
+    setStation(
+      station.map((d) => {
+        if (
+          d.code_station === props.code_station &&
+          props.selected === 'active'
+        ) {
+          setChoice(0);
+          setClicked('');
+          return { ...d, selected: '' };
+        }
+        if (
+          d.code_station === props.code_station &&
+          props.selected === 'active' && //clicked = toto   props.selected === 'active'
+          clicked === 'toto'
+        ) {
+          setChoice(0);
+          setClicked('');
+          return { ...d, selected: '' };
+        }
+        if (
+          d.code_station === props.code_station &&
+          props.selected === '' &&
+          clicked === 'active'
+        ) {
+          setSecondChoice(e.target.value);
+          setClicked('toto');
+          return { ...d, selected: 'toto' };
+        }
+        if (
+          d.code_station === props.code_station &&
+          props.selected === 'toto' &&
+          clicked === 'toto'
+        ) {
+          setSecondChoice(0);
+          setClicked('');
+          return { ...d, selected: '' };
+        }
+        if (d.code_station === props.code_station) {
+          setChoice(e.target.value);
+          setClicked('active');
+          return { ...d, selected: 'active' };
+        }
+        return d;
+      })
+    );
   };
 
   return (
@@ -59,8 +107,7 @@ export default function Card(props) {
       <button
         className={props.selected}
         onClick={(e) => {
-          handleChange(e);
-          changeActive();
+          changeActive(e);
           {
             console.log(choice, secondChoice, clicked);
           }

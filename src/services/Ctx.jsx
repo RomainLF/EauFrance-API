@@ -11,7 +11,7 @@ export function CtxProvider({ children }) {
   const [result, setResult] = useState([]);
   const [secondResult, setSecondResult] = useState([]);
   const [periode, setPeriode] = useState(10);
-  const [clicked, setClicked] = useState(0);
+  const [clicked, setClicked] = useState(' ');
 
   useEffect(() => {
     axios
