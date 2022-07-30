@@ -16,7 +16,7 @@ export function CtxProvider({ children }) {
   useEffect(() => {
     axios
       .get(
-        'https://hubeau.eaufrance.fr/api/v1/temperature/station?size=10&exact_count=true&format=json',
+        'https://hubeau.eaufrance.fr/api/v1/temperature/station?size=20&exact_count=true&format=json',
         {}
       )
       .then(function (res) {

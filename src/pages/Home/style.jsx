@@ -11,6 +11,7 @@ export default styled.div`
     right: 0;
     position: absolute;
     .list {
+      overflow-y: auto;
       margin-top: 2%;
       margin-left: 2%;
       width: 40vw;

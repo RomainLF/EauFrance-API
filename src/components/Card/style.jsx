@@ -11,10 +11,13 @@ export default styled.section`
   .cor {
     width: 60%;
     margin-left: 1%;
+    display: flex;
+    align-items: center;
   }
   button {
     margin-left: 5%;
     width: 10vw;
+    height: 5vh;
     border: 2px solid #4b8f29;
     text-transform: uppercase;
     &.active {

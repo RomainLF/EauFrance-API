@@ -17,12 +17,23 @@ export default function Card(props) {
   const changeActive = (e) => {
     setStation(
       station.map((d) => {
+        ///
+        if (
+          d.code_station === props.code_station &&
+          props.selected === '' &&
+          clicked === 'toto'
+        ) {
+          console.log('1');
+          return { ...d, selected: '' };
+        }
+        ///
         if (
           d.code_station === props.code_station &&
           props.selected === 'active'
         ) {
           setChoice(0);
           setClicked('');
+          console.log('2');
           return { ...d, selected: '' };
         }
         if (
@@ -32,6 +43,7 @@ export default function Card(props) {
         ) {
           setChoice(0);
           setClicked('');
+          console.log('3');
           return { ...d, selected: '' };
         }
         if (
@@ -41,6 +53,7 @@ export default function Card(props) {
         ) {
           setSecondChoice(e.target.value);
           setClicked('toto');
+          console.log('4');
           return { ...d, selected: 'toto' };
         }
         if (
@@ -49,12 +62,14 @@ export default function Card(props) {
           clicked === 'toto'
         ) {
           setSecondChoice(0);
-          setClicked('');
+          setClicked('active');
+          console.log('5');
           return { ...d, selected: '' };
         }
         if (d.code_station === props.code_station) {
           setChoice(e.target.value);
           setClicked('active');
+          console.log('6');
           return { ...d, selected: 'active' };
         }
         return d;
