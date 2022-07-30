@@ -14,20 +14,9 @@ export default function chartNavBar() {
             console.log(periode);
           }
         }}
-        value={10}
-      >
-        J
-      </button>
-      <button
-        onClick={(e) => {
-          setPeriode(e.target.value);
-          {
-            console.log(periode);
-          }
-        }}
         value={24}
       >
-        M
+        24 Heures
       </button>
       <button
         onClick={(e) => {
@@ -36,9 +25,20 @@ export default function chartNavBar() {
             console.log(periode);
           }
         }}
-        value={100}
+        value={720}
       >
-        A
+        1 Mois
+      </button>
+      <button
+        onClick={(e) => {
+          setPeriode(e.target.value);
+          {
+            console.log(periode);
+          }
+        }}
+        value={2160}
+      >
+        3 Mois
       </button>
     </SchartNavBar>
   );

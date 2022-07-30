@@ -10,7 +10,7 @@ export function CtxProvider({ children }) {
   const [secondChoice, setSecondChoice] = useState();
   const [result, setResult] = useState([]);
   const [secondResult, setSecondResult] = useState([]);
-  const [periode, setPeriode] = useState(10);
+  const [periode, setPeriode] = useState(24);
   const [clicked, setClicked] = useState(' ');
 
   useEffect(() => {
