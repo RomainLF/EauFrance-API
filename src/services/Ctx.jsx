@@ -10,13 +10,13 @@ export function CtxProvider({ children }) {
   const [secondChoice, setSecondChoice] = useState();
   const [result, setResult] = useState([]);
   const [secondResult, setSecondResult] = useState([]);
-  const [periode, setPeriode] = useState(10);
+  const [periode, setPeriode] = useState(24);
   const [clicked, setClicked] = useState(' ');
 
   useEffect(() => {
     axios
       .get(
-        'https://hubeau.eaufrance.fr/api/v1/temperature/station?size=10&exact_count=true&format=json',
+        'https://hubeau.eaufrance.fr/api/v1/temperature/station?size=20&exact_count=true&format=json',
         {}
       )
       .then(function (res) {

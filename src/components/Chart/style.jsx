@@ -5,10 +5,11 @@ export default styled.div`
   bottom: 0;
   display: flex;
   justify-content: flex-end;
+  margin-top: 4%;
   .mainGraph {
-    width: 40vmax;
-    height: 22vmax;
-    background-color: #ffffff;
-    border: solid 0.2em #00487d;
+    width: 50vmax;
+    height: 27vmax;
+    background-color: #f2fcf6;
+    border: solid 0.2em #98dbaf;
   }
 `;

@@ -14,62 +14,36 @@ export default function Card(props) {
     setSecondChoice,
   } = useContext(ctxProvider);
 
-  /*const changeActive = () => {
-    setStation(
-      station.map((d) => {
-        if (
-          d.code_station === props.code_station &&
-          props.selected === '' &&
-          clicked >= 1
-        ) {
-          return { ...d, selected: 'toto' };
-        }
-        if (
-          clicked <= 1 &&
-          d.code_station === props.code_station &&
-          props.selected === ''
-        ) {
-          return { ...d, selected: 'active' };
-        }
-        if (d.code_station === props.code_station) {
-          return { ...d, selected: '' };
-        }
-        return d;
-      })
-    );
-  };*/
-
-  /*const handleChange = (e) => {
-    if (props.selected === 'active') {
-      setClicked((clicked) => clicked - 1);
-    }
-    if (props.selected === 'toto') {
-      setClicked((clicked) => clicked - 1);
-    }
-    if (clicked < 1) {
-      setChoice(e.target.value), setClicked((clicked) => clicked + 1);
-    } else
-      setSecondChoice(e.target.value), setClicked((clicked) => clicked - 1);
-  };*/
-
   const changeActive = (e) => {
     setStation(
       station.map((d) => {
+        ///
+        if (
+          d.code_station === props.code_station &&
+          props.selected === '' &&
+          clicked === 'toto'
+        ) {
+          console.log('1');
+          return { ...d, selected: '' };
+        }
+        ///
         if (
           d.code_station === props.code_station &&
           props.selected === 'active'
         ) {
           setChoice(0);
           setClicked('');
+          console.log('2');
           return { ...d, selected: '' };
         }
         if (
           d.code_station === props.code_station &&
-          props.selected === 'active' && //clicked = toto   props.selected === 'active'
+          props.selected === 'active' &&
           clicked === 'toto'
         ) {
           setChoice(0);
           setClicked('');
+          console.log('3');
           return { ...d, selected: '' };
         }
         if (
@@ -79,6 +53,7 @@ export default function Card(props) {
         ) {
           setSecondChoice(e.target.value);
           setClicked('toto');
+          console.log('4');
           return { ...d, selected: 'toto' };
         }
         if (
@@ -87,12 +62,14 @@ export default function Card(props) {
           clicked === 'toto'
         ) {
           setSecondChoice(0);
-          setClicked('');
+          setClicked('active');
+          console.log('5');
           return { ...d, selected: '' };
         }
         if (d.code_station === props.code_station) {
           setChoice(e.target.value);
           setClicked('active');
+          console.log('6');
           return { ...d, selected: 'active' };
         }
         return d;
@@ -102,8 +79,7 @@ export default function Card(props) {
 
   return (
     <SCard>
-      <div>{props.code_station}</div>
-      <div>{props.libelle_station}</div>
+      <div className='cor'>{props.libelle_station}</div>
       <button
         className={props.selected}
         onClick={(e) => {
@@ -113,7 +89,9 @@ export default function Card(props) {
           }
         }}
         value={props.code_station}
-      ></button>
+      >
+        Selectionner
+      </button>
     </SCard>
   );
 }
