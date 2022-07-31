@@ -17,6 +17,7 @@ export default function Home() {
           {station.map((d) => {
             return (
               <Card
+                key={d.code_station}
                 code_station={d.code_station}
                 libelle_station={d.libelle_station}
                 selected={d.selected}
